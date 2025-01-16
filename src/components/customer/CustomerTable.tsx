@@ -83,8 +83,7 @@ export function CustomerTable () {
            : customers?.map(customer=>(
             <TableRow className="p-2 m-2 cursor-pointer" key={customer?._id}>
               <TableCell className="font-medium active:bg-slate-200">
-                <Link href={`/${customer?._id}`} className="flex items-center px-4">
-                {/* // onClick={()=>router.push(`/${customer?._id}`)}  */}
+                <Link href={`/dashboard/${customer?._id}`} className="flex items-center px-4">
                   <Avatar className="h-9 w-9">
                     <AvatarFallback>{customer?.name[0]}</AvatarFallback>
                   </Avatar>
