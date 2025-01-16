@@ -1,10 +1,11 @@
 "use client";
 
 import { Toaster } from "sonner";
-import Dashboard from "./(dashboard)/page";
+import Dashboard from "./dashboard/page";
 import Login from "./login/page";
 import { useSession } from "next-auth/react";
 import { Skeleton } from "@/components/ui/skeleton"
+import { Suspense } from "react";
 
 function SkeletonCard() {
   return (
@@ -22,8 +23,10 @@ export default function Home() {
   }
   return (
     <main className="h-lvh">
-      <Toaster closeButton/>
-      {session ? <Dashboard/>: <Login/>}
+      <Suspense fallback={<>Loading...</>}>
+        <Toaster closeButton/>
+        {session ? <Dashboard/>: <Login/>}
+      </Suspense>
     </main>
   );
 }

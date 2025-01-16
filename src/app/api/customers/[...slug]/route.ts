@@ -6,7 +6,7 @@ export const GET = async(req: NextRequest, {params}:{params:{slug?:string[]}})=>
     const id = params.slug?.[0];
     try {
         const result = await Order.find({customerId: id});
-        revalidatePath(`/${id}`);
+        revalidatePath(`/dashboard/${id}`);
         return NextResponse.json({
             message: 'Order Transaction Data fetched Successful!',
             result
@@ -29,7 +29,7 @@ export async function POST(req:NextRequest, {params}:{params:{slug?:string[]}}){
         const newOrder = await Order.create({customerId});
         // Saving the new customer
         newOrder.save();
-        revalidatePath(`/${customerId}`);
+        revalidatePath(`/dashboard/${customerId}`);
         // Returning the string representation of the new customer
         return NextResponse.json({
             message:'Order created Succesfully!',
@@ -60,7 +60,7 @@ export async function PUT(req:NextRequest, {params}:{params:{slug?:string[]}}){
         },{
             upsert:true
         });
-        revalidatePath(`/${customerId}`);
+        revalidatePath(`/dashboard/${customerId}`);
 
         // Returning the string representation of the new customer
         return NextResponse.json({
@@ -81,7 +81,7 @@ export async function DELETE(req: NextRequest){
     try {
         // Deleting the todo with the specified ID
         const result = await Order.deleteOne({_id});
-        revalidatePath(`/${_id}`);
+        revalidatePath(`/dashboard/${_id}`);
         return NextResponse.json({
             message: `Deleted successfully!!`, 
             result

@@ -29,7 +29,7 @@ const Login = ()=>{
   const router = useRouter();
   const {data:session} = useSession();
   if(session){
-    router.replace('/');
+    router.replace('/dashboard');
   }
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,7 +52,7 @@ const Login = ()=>{
         description: res?.error
       });
     } else {
-      router.push("/"); // Redirect to a protected page
+      router.push("/dashboard"); // Redirect to a protected page
       toast.success("Login Successful!");
     }
   }

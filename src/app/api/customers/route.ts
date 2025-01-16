@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET (){
     try {
         const result = await Customer.find({});
-        revalidatePath("/");
+        revalidatePath("/dashboard");
         return NextResponse.json({
             message: 'Customer List fetched Successful!',
             result
@@ -38,7 +38,7 @@ export async function POST(req:NextRequest){
         });
         // Saving the new customer
         newCustomer.save();
-        revalidatePath("/");
+        revalidatePath("/dashboard");
         // Returning the string representation of the new customer
         return NextResponse.json({
             message:'Customer Added Succesfully!',
@@ -58,7 +58,7 @@ export async function DELETE(req: NextRequest){
     try {
         // Deleting the Customer with the specified ID
         const result = await Customer.deleteOne({_id});
-        revalidatePath("/");
+        revalidatePath("/dashboard");
         return NextResponse.json({
             message: `${name} deleted successfully!!`, 
             result

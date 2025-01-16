@@ -40,7 +40,7 @@ export default function Register() {
   const {data:session} = useSession();
   const router = useRouter();
   if(session){
-    router.replace('/');
+    router.replace('/dashboard');
   }
   
  const form = useForm({
