@@ -1,5 +1,5 @@
-import User from "@/models/users";
-import NextAuth from "next-auth";
+import User, { UserDocument } from "@/models/users";
+import NextAuth, { SessionStrategy } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
@@ -52,18 +52,18 @@ export const authOptions = {
     signIn: "/login", // Custom login page
   },
   session: {
-    strategy: "jwt",
+    strategy: "jwt" as SessionStrategy,
   },
   secret:process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({token, user}) {
+    async jwt({token, user}: {token: any, user: any}) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: {session: any, token: any}) {
       if(token){
         session.user.id = token.id;
         session.user.email = token.email;
