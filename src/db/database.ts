@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 // Declaring a variable to store the cached database connection
 let isConnected = (global as any)?.isConnected;
 
-export async function connectToDataBase() {
+export async function connectToDataBase(username:string, password:string) {
+  const mongodb_uri=`mongodb+srv://${username}:${password}@fabreport.wgptk.mongodb.net/?retryWrites=true&w=majority&appName=fabreport`
   // If a cached connection exists, return it
   if (isConnected) {
     console.log("Using cached db connection");
@@ -12,7 +13,7 @@ export async function connectToDataBase() {
   }
   try {
     // If no cached connection exists, establish a new connection to MongoDB
-    const cnx = await mongoose.connect(process.env?.MONGODB_URI!);
+    const cnx = await mongoose.connect(mongodb_uri);
     // Cache the connection for future use
     isConnected = cnx.connections[0]?.readyState;
     console.log("New mongodb connection established");

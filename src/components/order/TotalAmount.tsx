@@ -28,17 +28,17 @@ type CountType = 'nag' | 'faad' | 'thaan';
 const TotalAmount = (props:Proptype) => {
   const {price, unit} = props;
 
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-  });
+  // const form = useForm<z.infer<typeof FormSchema>>({
+  //   resolver: zodResolver(FormSchema),
+  // });
 
   const [option, setOption] = useState<CountType>('thaan');
 
-  const onSubmit=(data:FormEvent)=>{
-    const value = (data.target as HTMLInputElement)?.value as CountType;
-    console.log('submit', value);
-    setOption(value);
-  }
+  // const onSubmit=(data:FormEvent)=>{
+  //   const value = (data.target as HTMLInputElement)?.value as CountType;
+  //   console.log('submit', value);
+  //   setOption(value);
+  // }
 
   return (
     <div>
@@ -68,7 +68,7 @@ const TotalAmount = (props:Proptype) => {
         </form>
       </Form> */}
       <div className="mt-4">
-        Amount : {Number(unit[option])*Number(price)}
+        Amount : {Number(unit[option] || 0)*Number(price)}
       </div>
       <span className="text-xs text-slate-500">(According to Thaan)</span>
     </div>

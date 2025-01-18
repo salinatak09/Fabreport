@@ -10,9 +10,6 @@ const nextConfig = {
         topLevelAwait: true,
       }
       return config
-    },
-    env:{
-      MONGODB_URI : 'mongodb://localhost:27017/manageus',
     }
   }
 
