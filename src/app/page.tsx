@@ -18,6 +18,9 @@ function SkeletonCard() {
 
 export default function Home() {
   const { data:session, status } = useSession();
+  if(!process.env.NEXT_PUBLIC_BASE_URL){
+    return null;
+  }
   if(status === 'loading'){
     return <SkeletonCard/>
   }
