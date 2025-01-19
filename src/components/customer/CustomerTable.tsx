@@ -15,11 +15,11 @@ export function CustomerTable () {
 
   const [loading, setLoading] = useState(true);
   const {customers, setCustomers} = useCustomerContext();
-
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   const getCustomers = async ()=>{
     try{
-      const res = await fetch(`/api/customers`);
+      const res = await fetch(`${BASE_URL}/api/customers`);
       const {result, message, error} = await res.json();
       if(res.status === 200){
         setCustomers(result);
@@ -39,7 +39,7 @@ export function CustomerTable () {
 
   const removeCustomer = async(customer:CustomerType)=>{
     try{
-      const res = await fetch(`/api/customers`, {
+      const res = await fetch(`${BASE_URL}/api/customers`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

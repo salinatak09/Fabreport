@@ -1,6 +1,7 @@
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const getOrder = async({customerId}:{customerId:string})=>{
     try{
-        const res = await fetch(`/api/customers/${customerId}`);
+        const res = await fetch(`${BASE_URL}/api/customers/${customerId}`);
         const {result, message} = await res.json();
         return {result, message};
     }catch(error){
@@ -10,7 +11,7 @@ export const getOrder = async({customerId}:{customerId:string})=>{
 
 export const addOrder = async({customerId}:{customerId:string})=>{
     try {
-        const res = await fetch(`/api/customers/${customerId}`, {
+        const res = await fetch(`${BASE_URL}/api/customers/${customerId}`, {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -25,7 +26,7 @@ export const addOrder = async({customerId}:{customerId:string})=>{
 
 export const addOrderData = async(customerId:string, orderId:string, key:string, data:any)=>{
     try {
-        const res = await fetch(`/api/customers/${customerId}/${orderId}/${key}`, {
+        const res = await fetch(`${BASE_URL}/api/customers/${customerId}/${orderId}/${key}`, {
             method: 'PUT',
             headers: {
             'Content-Type': 'application/json',
@@ -41,7 +42,7 @@ export const addOrderData = async(customerId:string, orderId:string, key:string,
 
 export const deleteOrder = async(customerId:string, orderId: string)=>{
     try {
-        const res = await fetch(`/api/customers/${customerId}/${orderId}`, {
+        const res = await fetch(`${BASE_URL}/api/customers/${customerId}/${orderId}`, {
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json',
