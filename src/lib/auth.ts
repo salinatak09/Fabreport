@@ -50,7 +50,7 @@ export const authOptions : NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: `${process.env.NEXT_PUBLIC_BASE_URL}/login`, // Custom login page
+    signIn: `${process.env.NEXT_PUBLIC_BASE_API_URL}/login`, // Custom login page
   },
   session: {
     strategy: "jwt" as SessionStrategy,

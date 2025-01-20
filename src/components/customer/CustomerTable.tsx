@@ -15,7 +15,7 @@ export function CustomerTable () {
 
   const [loading, setLoading] = useState(true);
   const {customers, setCustomers} = useCustomerContext();
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 
   const getCustomers = async ()=>{
     try{

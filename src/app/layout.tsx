@@ -19,7 +19,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  connectToDataBase(process.env.DB_USERNAME!, process.env.DB_PASSWORD!);
+  connectToDataBase();
   return (
     <html lang="en">
       <body className={`${hindi.className} antialiased`}>
