@@ -28,11 +28,13 @@ export const authOptions : NextAuthOptions = {
           const user = await User.findOne({
             email: credentials.email,
           });
+          console.log({user});
           if (!user) {
             throw new Error("User not found.");
           }
           // Verify password (use bcrypt or any other hashing mechanism here)
           const isValidPassword =  await bcrypt.compare(credentials?.password as string, user.password);
+          console.log(isValidPassword);
           if (!isValidPassword) {
             throw new Error("Invalid password.");
           }
@@ -58,6 +60,7 @@ export const authOptions : NextAuthOptions = {
   secret:process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({token, user}) {
+      console.log({token, user});
       if (user) {
         token.id = user.id;
         token.email = user.email;
@@ -66,6 +69,7 @@ export const authOptions : NextAuthOptions = {
     },
     async session({ session, token }: {session:any, token:JWT}) {
       const sessionUser = session.user !;
+      console.log({sessionUser});
       if(token){
         sessionUser.id = token.id;
         sessionUser.email = token.email;

@@ -61,10 +61,12 @@ export default function Register() {
         },
         body: JSON.stringify(data),
       });
+      console.log("Singup Response: "+response);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const {result, message, error} = await response.json();
+      console.log('signin ', {result, error, message});
       if(error) {
         toast.error(message);
       } else {

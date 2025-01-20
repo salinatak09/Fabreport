@@ -46,6 +46,7 @@ const Login = ()=>{
       email,
       password
     });
+    console.log(res);
 
     if (res?.error) {
       toast.error("Invalid email or password", {
