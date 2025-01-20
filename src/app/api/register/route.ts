@@ -17,6 +17,7 @@ export async function POST(request: Request) {
     const hashedPassword = await hash(password, 10);
     console.log({hashedPassword});
     const newUser = await User.create({ name, email, password:hashedPassword});
+    console.log("userSchema:" , User);
     console.log({newUser});
     newUser.save();
     return NextResponse.json({

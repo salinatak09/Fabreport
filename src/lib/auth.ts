@@ -25,6 +25,7 @@ export const authOptions : NextAuthOptions = {
 
         try {
           // Find the user by email
+          console.log('loginUser: ', User)
           const user = await User.findOne({
             email: credentials.email,
           });
