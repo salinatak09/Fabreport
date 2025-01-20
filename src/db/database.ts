@@ -5,7 +5,7 @@ import {connect} from "mongoose";
 let isConnected = (global as any)?.isConnected;
 
 export async function connectToDataBase() {
-  const mongoURL = `mongodb+srv://${process.env.NEXT_PUBLIC_DB_USERNAME}:${process.env.NEXT_PUBLIC_DB_PASSWORD}@fabreport.wgptk.mongodb.net/?retryWrites=true&w=majority&appName=fabreport`;
+  const mongoURL = process.env.NEXT_PUBLIC_MONGODB_URI;
   console.log({mongoURL});
   // If a cached connection exists, return it
   if (isConnected) {
