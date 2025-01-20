@@ -66,7 +66,7 @@ export default function Register() {
         throw new Error("Network response was not ok");
       }
       const {result, message, error} = await response.json();
-      console.log('signin ', {result, error, message});
+      console.log('sign up ', result, error, message);
       if(error) {
         toast.error(message);
       } else {

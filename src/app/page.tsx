@@ -6,6 +6,7 @@ import Login from "./login/page";
 import { useSession } from "next-auth/react";
 import { Skeleton } from "@/components/ui/skeleton"
 import { Suspense } from "react";
+import { connectToDataBase } from "@/db/database";
 
 function SkeletonCard() {
   return (
@@ -25,6 +26,8 @@ export default function Home() {
   if(status === 'loading'){
     return <SkeletonCard/>
   }
+  console.log('Added connection function');
+  connectToDataBase();
   return (
     <main className="h-lvh">
       <Suspense fallback={<>Loading...</>}>
