@@ -6,7 +6,7 @@ let isConnected = (global as any)?.isConnected;
 
 export async function connectToDataBase() {
   const mongoURL = process.env.MONGODB_URI;
-  console.log(mongoURL);
+  console.log({mongoURL});
   // If a cached connection exists, return it
   if (isConnected) {
     console.log("Using cached db connection");
