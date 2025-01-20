@@ -1,5 +1,5 @@
 // Importing mongoose library along with Connection type from it
-import mongoose from "mongoose";
+import {connect} from "mongoose";
 
 // Declaring a variable to store the cached database connection
 let isConnected = (global as any)?.isConnected;
@@ -15,7 +15,7 @@ export async function connectToDataBase() {
   }
   try {
     // If no cached connection exists, establish a new connection to MongoDB
-    const cnx = await mongoose.connect(mongoURL!);
+    const cnx = await connect(mongoURL!);
     // Cache the connection for future use
     isConnected = cnx.connections[0]?.readyState;
     console.log(isConnected);
