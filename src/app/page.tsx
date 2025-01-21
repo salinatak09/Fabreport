@@ -6,7 +6,7 @@ import Login from "./login/page";
 import { useSession } from "next-auth/react";
 import { Skeleton } from "@/components/ui/skeleton"
 import { Suspense } from "react";
-import { connectToDataBase } from "@/db/database";
+import { connectToDataBase } from "@/lib/db";
 
 function SkeletonCard() {
   return (
