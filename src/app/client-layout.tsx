@@ -1,5 +1,6 @@
 "use client";
 
+import { connectToDataBase } from "@/lib/db";
 import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
 

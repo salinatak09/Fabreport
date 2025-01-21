@@ -14,13 +14,14 @@ export const metadata: Metadata = {
   description: "Manage details of Fabric, Amount, Customers etc.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   console.log('inside Layout');
-  connectToDataBase();
+  const isConn = await connectToDataBase();
+  console.log("isConn :", isConn);
   return (
     <html lang="en">
       <body className={`${hindi.className} antialiased`}>
