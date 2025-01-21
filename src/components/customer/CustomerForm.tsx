@@ -39,7 +39,9 @@ export function CustomerForm() {
         },
         body: JSON.stringify(values)
       });
+      console.log(res);
       let {message, result} = await res.json();
+      console.log({message, result});
       if(res.status === 200){
         toast.success(message, {
           description: `${result?.name} Added to List`

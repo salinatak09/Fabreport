@@ -21,6 +21,7 @@ export function CustomerTable () {
     try{
       const res = await fetch(`${BASE_URL}/api/customers`);
       const {result, message, error} = await res.json();
+      console.log({result, message, error});
       if(res.status === 200){
         setCustomers(result);
         setLoading(false);

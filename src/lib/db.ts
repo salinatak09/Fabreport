@@ -16,8 +16,8 @@ export async function connectToDataBase() {
     const options = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000,  // 5 seconds
-      connectTimeoutMS: 10000,         // 10 seconds
+      serverSelectionTimeoutMS: 30000,  // 10 seconds
+      connectTimeoutMS: 50000,         // 50 seconds
     };
     const cnx = await mongoose.connect(mongoURL!, options);
     // Cache the connection for future use
