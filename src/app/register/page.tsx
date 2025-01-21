@@ -61,7 +61,7 @@ export default function Register() {
         },
         body: JSON.stringify(data),
       });
-      console.log("Singup Response: "+response);
+      console.log("Signup Response: "+response.toString());
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
