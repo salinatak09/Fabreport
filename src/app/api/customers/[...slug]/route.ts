@@ -1,3 +1,4 @@
+import { connectToDataBase } from "@/lib/db";
 import Order from "@/models/orderData";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
@@ -5,6 +6,8 @@ import { NextRequest, NextResponse } from "next/server";
 export const GET = async(req: NextRequest, {params}:{params:{slug?:string[]}})=>{
     const id = params.slug?.[0];
     try {
+        const isConn = await connectToDataBase();
+        console.log("isConn :", isConn);
         const result = await Order.find({customerId: id});
         revalidatePath(`/dashboard/${id}`);
         return NextResponse.json({
@@ -25,6 +28,8 @@ export async function POST(req:NextRequest, {params}:{params:{slug?:string[]}}){
     const customerId = params.slug?.[0];
     // data = Object.assign(data, customerId);
     try {
+        const isConn = await connectToDataBase();
+        console.log("isConn :", isConn);
         // Creating a new customer using Customer model
         const newOrder = await Order.create({customerId});
         // Saving the new customer
@@ -51,6 +56,8 @@ export async function PUT(req:NextRequest, {params}:{params:{slug?:string[]}}){
     const key = params.slug?.[2] as string;
     let data = await req.json();
     try {
+        const isConn = await connectToDataBase();
+        console.log("isConn :", isConn);
         // updating a Order using Order model
         const newOrder = await Order.updateOne({customerId, _id: orderId}, {
             $set:{
@@ -79,6 +86,8 @@ export async function PUT(req:NextRequest, {params}:{params:{slug?:string[]}}){
 export async function DELETE(req: NextRequest){
     const _id = await req.json();
     try {
+        const isConn = await connectToDataBase();
+        console.log("isConn :", isConn);
         // Deleting the todo with the specified ID
         const result = await Order.deleteOne({_id});
         revalidatePath(`/dashboard/${_id}`);

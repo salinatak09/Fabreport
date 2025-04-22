@@ -1,9 +1,12 @@
+import { connectToDataBase } from "@/lib/db";
 import Customer from "@/models/customerData";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET (){
     try {
+        const isConn = await connectToDataBase();
+        console.log("isConn :", isConn);
         const result = await Customer.find({});
         revalidatePath("/dashboard");
         return NextResponse.json({

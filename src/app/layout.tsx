@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Tiro_Devanagari_Hindi } from "next/font/google";
 import "./globals.css";
-import { connectToDataBase } from "@/lib/db";
 import ClientLayout from "./client-layout";
 
 const hindi = Tiro_Devanagari_Hindi({
@@ -20,8 +19,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   console.log('inside Layout');
-  const isConn = await connectToDataBase();
-  console.log("isConn :", isConn);
   return (
     <html lang="en">
       <body className={`${hindi.className} antialiased`}>

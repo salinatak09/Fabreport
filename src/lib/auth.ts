@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { NextAuthOptions, SessionStrategy } from "next-auth";
 import User from "@/models/users";
 import { JWT } from "next-auth/jwt";
+import { connectToDataBase } from "./db";
 
 export const authOptions : NextAuthOptions = {
   providers: [
@@ -25,7 +26,9 @@ export const authOptions : NextAuthOptions = {
 
         try {
           // Find the user by email
-          console.log('loginUser: ', User)
+          console.log('loginUser: ', User);
+          const isConn = await connectToDataBase();
+          console.log("isConn :", isConn);
           const user = await User.findOne({
             email: credentials.email,
           });
